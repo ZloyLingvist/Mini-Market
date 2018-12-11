@@ -1,0 +1,19 @@
+<div class="brd" id="tableboard"><br></div>
+
+<div class="brd" id="board"><br>
+
+
+<br>
+Запрос <br>
+<button name="Ввод" onclick="enter()">Ввод</button><br>
+<button value="Добавить" onclick="insert()">Добавить</button><br>
+<button value="Удалить" onclick="del()">Удалить</button><br>
+<button value="Изменить">Изменить</button><br>
+<button value="Сохранить">Сохранить</button><br>
+<br>
+<input maxlength="50" size="40" id="textfield"><br>
+<input maxlength="50" size="40" id="textfield1">
+<input maxlength="50" size="40" id="textfield2">
+<input maxlength="50" size="40" id="textfield3">
+<input maxlength="50" size="40" id="textfield4">
+<input maxlength="50" size="40" id="textfield5">
