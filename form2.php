@@ -4,7 +4,16 @@
 <script type="text/javascript"></script>
 <script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>    
 <link href="style.css" rel="stylesheet">
-
+<style>
+#mydiv4{
+position: fixed; /* or absolute */
+top: 90%;
+left: 30%;
+background:white;	
+width: 650px;
+height:50px;
+}
+</style>
 <title>Мини-маркет</title>
 </head>
 <body>
