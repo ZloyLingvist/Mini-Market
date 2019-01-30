@@ -3,106 +3,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript"></script>
 <script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>    
-<link href="style2.css" rel="stylesheet">
-<style>
-#mydiv1{
-position: fixed; /* or absolute */
-top: 25%;
-left: 90%;
-width: 200px;
-height: 370px;
-margin: -50px 0 0 -100px;
-background: white;
-text-align: center;
-font-family: 'Playfair Display SC', serif;
-font-size: 20px;	
-border: 1px solid black;		
-}
+<link href="style.css" rel="stylesheet">
 
-#mydiv2{
-position: fixed; /* or absolute */
-top: 37%;
-left: 92%;
-margin: -50px 0 0 -100px;
-background: white;
-text-align: center;
-font-family: 'Playfair Display SC', serif;
-font-size: 20px;
-	
-}
-
-#mydiv9{
-position: fixed; /* or absolute */
-top: 39%;
-left: 100%;
-margin: -50px 0 0 -100px;
-background: white;
-text-align: center;
-font-family: 'Playfair Display SC', serif;
-font-size: 20px;	
-}
-
-#mydiv5{
-position: fixed; /* or absolute */
-top: 30%;
-left: 11%;
-width: 280px;
-height: 370px;
-margin: -50px 0 0 -100px;
-background: white;
-text-align: center;
-font-family: 'Playfair Display SC', serif;
-font-size: 16px;	
-overflow-y: scroll;		
-}
-
-#mydiv8{
-position: fixed; /* or absolute */
-top: 15%;
-left: 10%;
-width: 300px;
-height:500px;
-margin: -50px 0 0 -100px;
-background: white;
-text-align: center;
-font-family: 'Playfair Display SC', serif;
-font-size: 18px;	
-border: 1px solid black;			
-}
-
-
-#mydiv3{
-position: fixed; /* or absolute */
-top: 15%;
-left: 35%;
-background:white;	
-width: 700px;
-height:500px;
-border: 1px solid black;
-overflow-y: scroll;
-}
-
-#mydiv4{
-position: fixed; /* or absolute */
-top: 85%;
-left: 30%;
-background:white;	
-width: 650px;
-height:50px;
-}
-
-</style>
-<title>Форма 2</title>
+<title>Мини-маркет</title>
 </head>
 <body>
 
-<div id="mydiv1"><br>Работа с таблицей <br><div id="mydiv2">
+<div id="mydiv1"><br>Работа с таблицами <br><div id="mydiv2">
 </div><div id="mydiv9"></div>
 
 <div id="mydiv3">Текущая таблица <br></div>
 <div id="mydiv4"><br>
-<button name="Ввод" onclick="transfer()" id="vvod">Ввод</button>
-<button value="Добавить" onclick="transfer()" id="dob">Добавить</button>
+<button name="Ввод" onclick="dob()" id="vvod">Ввод</button>
+<button value="Добавить" onclick="dob()" id="dob">Добавить</button>
 <button name="Удалить" onclick="delet()" id="del">Удалить</button>
 <button value="Изменить" onclick="change()" id="ch">Изменить</button>
 <button value="Сохранить" onclick="save()" id="sv">Сохранить</button>
@@ -115,130 +28,141 @@ height:50px;
     background-color:#f9f9f9;
     min-width:30px;
     box-shadow:0px 8px 10px 0px rgba(0,0,0,0.2)">
- </div>
+</div>
  
- <div id="dc_2" style="position: fixed;left:50%;visibility:hidden;position:absolute;
+<div id="dc_2" style="position: fixed;left:50%;visibility:hidden;position:absolute;
     background-color:#f9f9f9;
     min-width:30px;
     box-shadow:0px 8px 10px 0px rgba(0,0,0,0.2)">
- </div>
+</div>
  
- <div id="dc_3" style="position: fixed;left:50%;visibility:hidden;position:absolute;
+<div id="dc_3" style="position: fixed;left:50%;visibility:hidden;position:absolute;
     background-color:#f9f9f9;
     min-width:30px;
     box-shadow:0px 8px 10px 0px rgba(0,0,0,0.2)">
- </div>
-  
- <input maxlength="4" size="4" style="visibility:hidden" id="tmp_input1" style="visibility:visible">
-  <input maxlength="4" size="4" style="visibility:hidden" id="tmp_input2" style="visibility:visible">
-   <input maxlength="4" size="4" style="visibility:hidden"  id="tmp_input3" style="visibility:visible">
- 
+</div>
 <script>
 
 var globo_mod=0;
+var where_work=0;
 
-function transfer(){ //при наличии уже существующих строк
-//// При нажатие имени таблицы, оно подсвечивается синим. 
-//// Если нажата кнопка "Добавить", то текущее "синее" название отправляется на добавление
+/* Добавление записей в таблицу */
 
-var m=['0','1','2','3','4','5'];
+function dob(){
+	var m=['0','1','2','3','4','5'];
+	
+	for (l=0;l<m.length;l++){
+		var color=document.getElementById(m[l]).style.color;
+		if (color=="blue"){
+			var table_name=document.getElementById(m[l]).innerHTML;
+			document.getElementById("q_"+l.toString()).checked=false;
+			break
+		}	
+	}
+	
+	if (table_name=="postavshik"){
+		document.getElementById("textfield0_postavshik").style.display="none"
+		document.getElementById("mydiv5").innerHTML+="<input class='otdel' id='textfield_0_postavshik'>"
+	}
+	
+	if (table_name=="greeds"){
+		document.getElementById("textfield2_greeds").style.display="none"
+		document.getElementById("mydiv5").innerHTML+="<input class='otdel' id='textfield_2_greeds'>"
+	}
+	
+	if (table_name=="personal"){
+		document.getElementById("textfield2_personal").style.display="none"
+		document.getElementById("mydiv5").innerHTML+="<input class='otdel' id='textfield_2_personal'>"
+	}
+	
+	if (table_name=="salesman"){
+		document.getElementById("textfield5_salesman").style.display="none"
+		document.getElementById("mydiv5").innerHTML+="<input class='otdel' id='textfield_5_salesman'>"
+	}
+	
 
-for (l=0;l<m.length;l++){
-	var color=document.getElementById(m[l]).style.color;
-	if (color=="blue"){
-		var table_name=document.getElementById(m[l]).innerHTML;
-		document.getElementById("q_"+l.toString()).checked=false;
-		break
-	}	
+	document.getElementById('mydiv8').innerHTML='<br><div id="whatido">Добавление</div><br>'+
+	'<button onclick="ochist()">Очистить</button> <button onclick="transfer()">Ok'+
+	'</button> <button onclick="newtable('+m[l]+')">Назад</button>'
 }
+function transfer(){ 
+	var m=['0','1','2','3','4','5'];
+	var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
+	var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
+	var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)'] //postavshik
+	var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус'] //salesman
+	var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+	var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+	var m=['0','1','2','3','4','5'];
+	var arr=[]
+	var st=''
+	var tmp=[]
+	var k=''
+	
+	for (l=0;l<m.length;l++){
+		var color=document.getElementById(m[l]).style.color;
+		if (color=="blue"){
+			var table_name=document.getElementById(m[l]).innerHTML;
+			document.getElementById("q_"+l.toString()).checked=false;
+			break
+		}	
+	}
 
-//document.getElementById("mydiv2").style.visibility="hidden"
-//document.getElementById("mydiv9").style.visibility="hidden"
-//document.getElementById("mydiv8").innerHTML='<br><button value="Ok">Добавить</button><button value="Ok">Назад</button>'
-
-var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
-var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
-var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
-var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
-var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
-var arr6=['Дата продажи','Продажа','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
-var m=['0','1','2','3','4','5'];
-var arr=[]
-
-var st=''
-var tmp=[]
-var k=''
-
-if (table_name=="greeds"){
-	arr=arr1;
-	k='0'
-	for (i=0;i<arr.length;i++){
-		if (i!=2 && i!=3 &&i!=4){
-			var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
-			if (r.length!=""){
-				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name)	.value+'"'
-			} else {
-				alert('Заполните пожалуйста все поля')
-				return 0
-			}
-		}
+	if (table_name=="greeds"){
+		arr=arr1;
+		k='0'
 		
-		if (i==2 || i==3 || i==4){
-			var r=document.getElementById("textfield"+i.toString()+"_"+table_name)	.value
-			if (r.length!=""){
-				r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
-			} 
-				else {
+		for (i=0;i<arr.length;i++){
+			if (i!=3){
+				var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
+				if (r.length!=""){
+					r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name)	.value+'"'
+				} else {
+					alert('Заполните пожалуйста все поля')
+					return 0
+				}
+			}
+		
+			if (i==3){
+				var r=document.getElementById("textfield"+i.toString()+"_"+table_name)	.value
+				if (r.length!=""){
+					r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
+				} else {
+					alert('Заполните пожалуйста все поля')
+					return 0
+				}
+			}
+			
+			tmp.push(r)
+	}
+	
+	st="INSERT INTO greeds (`Наименование`,`Цена(сум)`, `Производитель`, `Код отдела`,`Срок хранения (суток)`,`Кол-во в отделе(штук)`) "+
+	"SELECT "+tmp[0]+","+tmp[1]+","+tmp[2]+","+
+	"( SELECT `Номер` FROM otdel WHERE `Отдел`="+tmp[3]+"),"+tmp[4]+","+tmp[5]
+	
+	}
+
+	if (table_name=="personal"){
+		arr=arr2;
+		k='1'
+		for (i=0;i<arr.length;i++){
+				var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
+				if (r.length!=""){
+					r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
+				} else {
 					alert('Заполните пожалуйста все поля')
 					return 0
 			}
-		}
-		
-		tmp.push(r)
-}
-
-st="INSERT INTO greeds (`Наименование`,`Цена(сум)`, `Производитель`, `Код категории`,`Код отдела`,`Срок хранения (суток)`,`Количество(штук)`) SELECT "+tmp[0]+","+tmp[1]+","+tmp[2]+","+
-"( SELECT `Номер` FROM sklad WHERE `Категория товара` ="+tmp[3]+"),"+
-"( SELECT `Номер` FROM otdel WHERE `Отдел`="+tmp[4]+"),"+tmp[5]+","+tmp[6]
-}
-
-if (table_name=="personal"){
-	arr=arr2;
-	k='1'
-	for (i=0;i<arr.length;i++){
-		if (i!=2){
-		    var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
-			if (r.length!=""){
-				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
-			} else {
-				alert('Заполните пожалуйста все поля')
-				return 0
-			}
-		}
-		
-		if (i==2){
-			var r=document.getElementById("textfield"+i.toString()+"_"+table_name).value
-			if (r.length!=""){
-				r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
-			}
-			else {
-				alert('Заполните пожалуйста все поля')
-				return 0
-			}
-		}
 		
 		tmp.push(r)
 	}
-
 	st="INSERT INTO personal (`ФИО`,`Трудовой стаж (лет)`, `Должность`,`Зарплата (сум)`,`Возраст (лет)`,`Адрес`,`Телефон`) VALUES ("+tmp[0]+","+tmp[1]+","+tmp[2]+","+tmp[3]+","+tmp[4]+","+tmp[5]+","+tmp[6]+")"
-
 }
-
 if (table_name=="postavshik"){
 	arr=arr3;
 	k='2'
+
 	for (i=0;i<arr.length;i++){
-		if (i!=0 && i!=2){
 			var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
@@ -246,8 +170,18 @@ if (table_name=="postavshik"){
 				alert('Заполните пожалуйста все поля')
 				return 0
 			}
-		}
-		
+
+		tmp.push(r)
+	}
+	st="INSERT INTO postavshik (`Поставщик`,`Дата поставки`, `Юридический адрес`,`Телефон`,`Цена поставки(сум)`,`Оплачено(процент)`,`Поставлено товара(штук)`)"+
+	" SELECT "+tmp[0]+","+tmp[1]+","+tmp[2]+","+tmp[3]+","+tmp[4]+","+tmp[5]+","+tmp[6]
+}
+
+if (table_name=="salesman"){
+	arr=arr4;
+	k='3'
+	
+	for (i=0;i<arr.length;i++){
 		if (i==0 || i==2){
 			var r=document.getElementById("textfield"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
@@ -258,19 +192,7 @@ if (table_name=="postavshik"){
 			}
 		}
 		
-		tmp.push(r)
-	}
-
-	st="INSERT INTO postavshik (`Поставщик`,`Дата следующей поставки`, `Код категории`,`Адрес`,`Телефон`)"+
-	" SELECT "+tmp[0]+","+tmp[1]+",("+
-	" SELECT `Номер` FROM sklad WHERE `Категория товара` ="+tmp[2]+"),"+tmp[3]+","+tmp[4]
-}
-
-if (table_name=="salesman"){
-	arr=arr4;
-	k='3'
-	for (i=0;i<arr.length;i++){
-		if (i==2){
+		if (i!=0 && i!=2){
 			var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
@@ -280,30 +202,18 @@ if (table_name=="salesman"){
 			}
 		}
 		
-		if (i!=2){
-			var r=document.getElementById("textfield"+i.toString()+"_"+table_name).value;
-			if (r.length!=""){
-				r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
-			} else {
-				alert('Заполните пожалуйста все поля')
-				return 0
-			}
-		}
-		
 		tmp.push(r)
 	}
 	
-	st="INSERT INTO salesman (`Код сотрудника`, `Код Отдела`, `План по прибыли(сум/месяц)`)"+
+	st="INSERT INTO salesman (`Код сотрудника`, `План по прибыли(сум/месяц)`,`График работы`,`Премия(процент от продаж)`,`Работа в магазине(лет)`,`Статус`)"+
 	"SELECT ( SELECT pl.`Номер` FROM (personal pl LEFT JOIN salesman sl ON pl.`Номер`=sl.`Код сотрудника`) WHERE pl.`ФИО`="+tmp[0]+"),"+
-	"( SELECT `Номер` FROM otdel WHERE `Отдел`="+tmp[1]+"),"+tmp[2]
-	
+	tmp[1]+","+tmp[2]+","+tmp[3]+","+tmp[4]+","+tmp[5]
 }
-
 if (table_name=="sklad"){
 	arr=arr5;
 	k='4'
 	for (i=0;i<arr.length;i++){
-		if (i!=0 && i!=4){
+		if (i!=0 && i!=4 && i!=1){
 			var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
@@ -313,7 +223,7 @@ if (table_name=="sklad"){
 			}
 		}
 		
-		if (i==0 || i==4){
+		if (i==0 || i==4 || i==1){
 			var r=document.getElementById("textfield"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
@@ -325,18 +235,20 @@ if (table_name=="sklad"){
 		
 		tmp.push(r)
 	}
-
-	st="INSERT INTO sklad (`Категория товара`,`Дата получения`, `Номер стеллажа`,`Номер полки`,`Получил`)"+
-	" SELECT "+tmp[0]+","+tmp[1]+","+tmp[2]+","+tmp[3]+",("+
+	
+	st="INSERT INTO sklad (`Код товара`,`Код поставки`, `Номер стеллажа`,`Номер полки`,`Получил`,`На складе(штук)`)"+
+	" SELECT ( SELECT `Номер` FROM greeds WHERE `Наименование`="+tmp[0]+"),( SELECT `Номер` FROM postavshik "+
+	" WHERE `Поставщик`="+tmp[1]+"),"+tmp[2]+","+tmp[3]+",("+
 	" SELECT `Номер` FROM personal "+
-	 "WHERE `ФИО`="+tmp[4]+")"
+	 "WHERE `ФИО`="+tmp[4]+"),"+tmp[5]
+	console.log(st)
 }
 
 if (table_name=="sales"){
 	arr=arr6;
 	k='5'
 	for (i=0;i<arr.length;i++){
-		if (i!=3 && i!=4){
+		if (i!=2 && i!=3){
 			var r=document.getElementById("textfield_"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield_"+i.toString()+"_"+table_name).value+'"'
@@ -346,7 +258,7 @@ if (table_name=="sales"){
 			}
 		}
 		
-		if (i==3 || i==4){
+		if (i==2 || i==3){
 			var r=document.getElementById("textfield"+i.toString()+"_"+table_name).value;
 			if (r.length!=""){
 				r='"'+document.getElementById("textfield"+i.toString()+"_"+table_name).value+'"'
@@ -358,41 +270,41 @@ if (table_name=="sales"){
 		
 		tmp.push(r)
 	}
-
-	st="INSERT INTO sales (`Дата продажи`,`Продажа`, `Количество(штук)`,`Код продавца`,`Код товара`,`Скидка (процент)`)"+
-	" SELECT "+tmp[0]+","+tmp[1]+","+tmp[2]+","+
-	" ( SELECT `Номер` FROM salesman WHERE `Код сотрудника`=(SELECT `Номер` FROM personal WHERE `ФИО`="+tmp[3]+
-	")), (SELECT `Номер` FROM greeds WHERE `Наименование`="+tmp[4]+"),"+tmp[5]	
+	
+	st="INSERT INTO sales (`Дата продажи`,`Количество(штук)`,`Код продавца`,`Код товара`,`Скидка (процент)`)"+
+	" SELECT "+tmp[0]+","+tmp[1]+","+
+	" ( SELECT `Номер` FROM salesman WHERE `Код сотрудника`=(SELECT `Номер` FROM personal WHERE `ФИО`="+tmp[2]+
+	")), (SELECT `Номер` FROM greeds WHERE `Наименование`="+tmp[3]+"),"+tmp[4]	
 }
-
 
 $.ajax ({
 	type:"POST",
 	url : "add.php",
 	data : {table:table_name,str:st},
 	dataType : "json",	
-
 	success: function(data){
 		var str = JSON.stringify(data);
 		var tmp = JSON.parse(str);
 	
 		if (tmp.length>1){
 			var keys=Object.keys(tmp[0])
+			document.getElementById("mydiv5").innerHTML=''
 			newtable(k)
 		} 
 	}
 	});
 }
 
+//////////////////////////////////////////////
+
+/* Показ таблиц, полей для ввода*/
 function showtable(arr,tmp,name){
 /// arr-массив с названиями полей текущей таблицы
 /// tmp-выводимые данные
 var i;
 document.getElementById('mydiv3').innerHTML="<br>Текущая таблица<br>"
-
-var st1='<br><table id="TID" border="1;solid" style="margin:5px ; border-collapse: collapse">'
+var st1='<br><table id="TID">'
 st1=st1+"<tr align='center'>"
-
 ///// Названия полей ////
 for (m=0;m<arr.length;m++){
 	st1=st1+"<td style='width: 100px;'><strong>"+arr[m]+"</strong></td>"
@@ -421,8 +333,16 @@ if (tmp.length==0){
 for (m=0;m<tmp.length;m++){
 		st1=st1+"<tr align='center' id='"+'t'+m.toString()+"' onclick='ukaz("+m.toString()+','+tmp.length.toString()+")'>"
 		for (i=0;i<arr.length;i++){
-			if (name=="sklad" && arr[i]=="Получил"){
-				arr[i]="ФИО"
+			if (name=="greeds" && arr[i]=="Кол-во на складе(штук)"){
+				arr[i]="На складе(штук)"
+			}
+			if (name=="sklad"){
+				if (arr[i]=="Получил"){
+					arr[i]="ФИО"
+				}
+				if (arr[i]=="Товар"){
+					arr[i]="Наименование"
+				}
 			}
 			
 			if (name=="sales"){
@@ -440,11 +360,9 @@ for (m=0;m<tmp.length;m++){
 		
 		st1=st1+'</tr>'
 }
-
 document.getElementById('mydiv3').innerHTML+=st1;
 ////////////////////////////////////////////////////////
 }
-
 function selection(name,what,id,st){
 	var str='',st2='',m='';
 	var tr=[]
@@ -452,10 +370,7 @@ function selection(name,what,id,st){
 	st2=st;
 	if (name=="greeds"){
 		var k=0;
-		if (what=='Категория товара'){
-		   str="SELECT `Категория товара` FROM sklad"
-	   }
-	   
+		
 	   if (what=='Отдел'){
 			str="SELECT `Отдел` FROM otdel"
 		}
@@ -472,10 +387,7 @@ function selection(name,what,id,st){
 	
 	if (name=="postavshik"){
 	   var k=2;
-	   if (what=='Категория товара'){
-		   str="SELECT `Категория товара` FROM sklad"
-	   }
-	   
+	
 	   if (what=='Поставщик'){
 		 str="SELECT `Поставщик` FROM postavshik"  
 	   }
@@ -483,8 +395,13 @@ function selection(name,what,id,st){
 	
 	if (name=="salesman"){
 		var k=3;
-		if (what=='Отдел'){
-				str="SELECT `Отдел` FROM otdel"
+		
+		if (what=='График работы'){
+			str="SELECT `График` FROM job"
+		}
+		
+		if (what=='Статус'){
+				str="SELECT `Статус` FROM salesman"
 		}
 		
 		if (what=='ФИО'){
@@ -495,9 +412,13 @@ function selection(name,what,id,st){
 	if (name=="sklad"){
 		var k=4;
 		var a=''
-		if (what=='Категория товара'){
-			str="SELECT `Категория товара` FROM sklad"
-		}
+		if (what=='Поставщик'){
+			str="SELECT `Поставщик` FROM postavshik"
+		}	
+		
+		if (what=='Товар'){
+			str="SELECT `Наименование` FROM greeds"
+		}	
 		
 		if (what=='Получил'){
 			str="SELECT `ФИО` FROM personal"
@@ -515,6 +436,7 @@ function selection(name,what,id,st){
 		}	
 	}
 	
+	
 	$.ajax({ 
 		url : "sel.php",
 		type : "POST",
@@ -524,15 +446,19 @@ function selection(name,what,id,st){
 		var str = JSON.stringify(data);
 		var tmp = JSON.parse(str);
 		
-		st2=what+' '+'<select id="textfield'+id.toString()+'_'+name+'"><option selected disabled hidden value=""></option>'
+		st2=what+' '+'<select class="asel" id="textfield'+id.toString()+'_'+name+'"><option selected disabled hidden value=""></option><option></option>'
 		
 		for (i=0;i<tmp.length;i++){
 			if (what=="Получил" || (what=="Продавец" && name=="sales")){
 				what="ФИО"
 			}
 			
-			if (what=="Товар" && name=="sales"){
+			if (what=="Товар" && (name=="sales" || name=="sklad")){
 			  what="Наименование"	
+			}
+			
+			if (what=="График работы" && name=="salesman"){
+			  what="График"	
 			}
 			
 			var st=tmp[i][what];	
@@ -549,11 +475,11 @@ function selection(name,what,id,st){
 			  st2=st2+'<br>'	
 			}
 			
-			if ((what=="ФИО" || what=="Категория товара") && name=="sklad"){
+			if ((what=="ФИО" || what=="Наименование" || what=="Поставщик") && name=="sklad"){
 			  st2=st2+'<br>'	
 			}
 			
-			if ((what=="Отдел" || what=="ФИО") && name=="salesman"){
+			if ((what=="Статус" || what=="ФИО" || what=="График") && name=="salesman"){
 				st2=st2+'<br>'
 			}
 			
@@ -565,7 +491,6 @@ function selection(name,what,id,st){
 		}
 	});
 }
-
 function showqueries(arr,k,mode){
 	var st='<br>'+k+'<br><br>'
 	var st2=''
@@ -579,7 +504,25 @@ function showqueries(arr,k,mode){
 	
 	for (l=0;l<arr.length;l++){
 	   flag=0;
-	   if (k=="greeds" && (arr[l]=="Категория товара" || arr[l]=="Производитель" || arr[l]=="Поставщик" || arr[l]=="Отдел")){
+	   if (k=="greeds"){
+		  if (arr[l]=="Кол-во в отделе(штук) на текущий момент"){
+			continue
+		 }
+	   }
+	   
+	   if (k=="salesman" && (arr[l]=="Оплата при выполнении плана")){
+		   continue
+	   }
+	   
+	   if (k=="sales" && (arr[l]=="Цена со скидкой")){
+			continue
+	   }
+	   
+	   if (k=="postavshik" && (arr[l]=="Нужно оплатить")){
+			continue
+	   }
+	   
+	   if (k=="greeds" && (arr[l]=="Производитель" || arr[l]=="Отдел")){
 		   selection(k,arr[l],l,st)
 		   flag=1;  
 	   } 
@@ -589,17 +532,17 @@ function showqueries(arr,k,mode){
 		   flag=1;  
 	   } 
 	   
-	    if (k=="postavshik" && (arr[l]=="Поставщик" || arr[l]=="Категория товара")){
+	    if (k=="postavshik" && (arr[l]=="Поставщик")){
 		   selection(k,arr[l],l,st)
 		   flag=1;  
 	   } 
-	   
-	   if (k=="salesman" && (arr[l]=="Отдел" || arr[l]=="ФИО")){
+	   	  
+	   if (k=="salesman" && (arr[l]=="Статус" || arr[l]=="ФИО" || arr[l]=="График работы")){
 		   selection(k,arr[l],l,st)
 		   flag=1;  
 	   }
 	   
-	   if (k=="sklad" && (arr[l]=="Категория товара" || arr[l]=="Получил")){
+	   if (k=="sklad" && (arr[l]=="Получил" || arr[l]=="Товар" || arr[l]=="Поставщик")){
 		   selection(k,arr[l],l,st)
 		   flag=1;  
 	   }
@@ -613,24 +556,27 @@ function showqueries(arr,k,mode){
 		   if (mode==2){
 		   if ((arr[l].indexOf('(') + 1) || arr[l]=='Номер полки' || arr[l]=='Номер стеллажа'){
 			   var znak=['>','<','=','!=','>=','<=','(a,b)','[a,b]','[a,b)','(a,b]']
-			st=st+arr[l]+'<br><br><input maxlength="4" size="4" style="visibility:hidden" id="t_1'+l.toString()+'">'+
-			'<select id="character'+l.toString()+'" onchange="kb('+l+')"><option selected disabled hidden value=""></option>'
+			   
+			st=st+arr[l]+'<br><br><input type="text" class="otdel" maxlength="6"   size="3" style="visibility:hidden" id="t_1'+l.toString()+k+'">'+
+			'<select class="mysel" id="character'+l.toString()+k+'" onchange="kb(this)"><option selected disabled hidden value=""></option>'
+			
 			for (j=0;j<znak.length;j++){
 				st=st+'<option>'+znak[j]+'</option>'
 			}	
-				st=st+'</select> <input style="visibility:hidden" maxlength="4" size="4" id="t_2'+l.toString()+'"><br><br>'
+				st=st+'</select> <input type="text" class="otdel" maxlength="6"  size="3" style="visibility:hidden"  id="t_2'+l.toString()+k+'"><br><br>'
+				
 			} else {
 				if (arr[l].indexOf('Дата') + 1){
-				    st=st+arr[l]+' '+'<input type="date" data-date-format="YYYY MMMM DD" value="'+getDate()+'" maxlength="10"   size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
+				    st=st+arr[l]+' '+'<input type="date" data-date-format="YYYY MMMM DD"  maxlength="10"   size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
 				} else {
-					st=st+arr[l]+' '+'<input maxlength="10"  size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
+					st=st+arr[l]+' '+'<input class="tf" type="text" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
 				}
 			}
 		  } else {
 			  if (arr[l].indexOf('Дата') + 1){
-				    st=st+arr[l]+' '+'<input type="date" data-date-format="YYYY MMMM DD" value="'+getDate()+'" maxlength="10"   size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
+				    st=st+arr[l]+' '+'<input type="date" data-date-format="YYYY MMMM DD"  maxlength="10"   size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
 				} else {
-					st=st+arr[l]+' '+'<input maxlength="10"  size="10" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
+					st=st+arr[l]+' '+'<input class="tf" type="text" id="textfield_'+l.toString()+'_'+k+'"><br><br>'
 				}
 		  }
 	   }
@@ -638,29 +584,31 @@ function showqueries(arr,k,mode){
 	
 	document.getElementById("mydiv5").innerHTML+=st
 }
-
 function newtable(k){
- var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
+ var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)','Кол-во в отделе(штук) на текущий момент'] //greeds
  var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
- var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
- var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
- var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
- var arr6=['Дата продажи','Продажа','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+ var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)','Нужно оплатить'] //postavshik
+ var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус','Оплата при выполнении плана'] //salesman
+ var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+ var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)','Цена со скидкой']//sales
  var m=['0','1','2','3','4','5'];
  var st2=''
  var str=''
  
+
  for (l=0;l<m.length;l++){
 	document.getElementById("q_"+l.toString()).checked=false
 	document.getElementById(m[l]).style.color="black"
  }
-
  document.getElementById(k).style.color="blue"
  document.getElementById("q_"+k).checked=true
  
  if (k=='0'){
 	 str="greeds"
-   	 str2="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,s.`Категория товара`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Количество(штук)` FROM (greeds g LEFT JOIN otdel o ON g.`Код Отдела`=o.`Номер`) LEFT JOIN sklad s ON g.`Код категории`=s.`Номер` ";
+   	 str2="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,"+
+	 "g.`Кол-во в отделе(штук)`,(@i:=g.`Кол-во в отделе(штук)`-( SELECT SUM(`Количество(штук)`) "+
+	 "FROM sales WHERE `Код товара`=g.`Номер`)) AS `Кол-во в отделе(штук) на текущий момент` "+
+	 "FROM (greeds g LEFT JOIN otdel o ON g.`Код Отдела`=o.`Номер`)";
  }
  
  if (k=='1'){
@@ -670,26 +618,32 @@ function newtable(k){
  
  if (k=='2'){
    str="postavshik"
-   str2="SELECT p.`Поставщик`,p.`Дата следующей поставки`,s.`Категория товара`,p.`Адрес`,p.`Телефон` FROM (postavshik p LEFT JOIN sklad s ON p.`Код категории`=s.`Номер`)"
+   str2="SELECT `Поставщик`,`Дата поставки`,`Юридический адрес`,`Телефон`,`Цена поставки(сум)`,`Оплачено(процент)`,"+
+   "`Поставлено товара(штук)`,(@i:=`Цена поставки(сум)`-`Цена поставки(сум)`*`Оплачено(процент)`/100) AS `Нужно оплатить` FROM postavshik "
  }
  
  if (k=='3'){
    str="salesman"
-   str2="SELECT p.`ФИО`,o.`Отдел`,s.`План по прибыли(сум/месяц)` FROM (salesman s LEFT JOIN otdel o ON s.`Код Отдела`=o.`Номер`) LEFT JOIN personal p ON s.`Код сотрудника`=p.`Номер`";	 
+   str2="SELECT p.`ФИО`,s.`План по прибыли(сум/месяц)`,s.`График работы`,s.`Премия(процент от продаж)`,"+
+   "s.`Работа в магазине(лет)`,s.`Статус`,(@i:=p.`Зарплата (сум)`+s.`План по прибыли(сум/месяц)`* s.`Премия(процент от продаж)`/100) "+
+   "AS `Оплата при выполнении плана` FROM salesman s LEFT JOIN personal p ON s.`Код сотрудника`=p.`Номер`";	 
  }
  
  if (k=='4'){
    str="sklad"
-   str2="SELECT s.`Категория товара`,s.`Дата получения`,s.`Номер стеллажа`,s.`Номер полки`,p.`ФИО` FROM (sklad s LEFT JOIN personal p ON s.`Получил`=p.`Номер`)"	 
+   str2="SELECT g.`Наименование`,pt.`Поставщик`,s.`Номер стеллажа`,s.`Номер полки`,p.`ФИО`, "+
+   "s.`На складе(штук)` FROM (sklad s LEFT JOIN personal p ON s.`Получил`=p.`Номер`) LEFT JOIN greeds g ON g.`Номер`=s.`Код товара`"+
+   "LEFT JOIN postavshik pt ON s.`Код поставки`=pt.`Номер`"
  }
  
  if (k=='5'){
    str="sales"
-   str2="SELECT s.`Дата продажи`,s.`Продажа`,s.`Количество(штук)`,p.`ФИО`,g.`Наименование`,s.`Скидка (процент)`"+
-   " FROM (sales s LEFT JOIN greeds g ON s.`Код товара`=g.`Номер`) LEFT "+
+   str2="SELECT s.`Дата продажи`,s.`Количество(штук)`,p.`ФИО`,g.`Наименование`,s.`Скидка (процент)`"+
+   ",(@i:=s.`Количество(штук)`*(g.`Цена(сум)`-g.`Цена(сум)`* s.`Скидка (процент)`/100)) "+
+   "AS `Цена со скидкой` FROM (sales s LEFT JOIN greeds g ON s.`Код товара`=g.`Номер`) LEFT "+
    "JOIN salesman sl ON s.`Код продавца`=sl.`Номер` LEFT JOIN personal p ON p.`Номер`=sl.`Код сотрудника`" 
  }
- 	
+ 
  $.ajax ({
 	type:"POST",
 	url : "refresh.php",
@@ -737,7 +691,6 @@ function newtable(k){
 	'</button> <button onclick="newtable('+k.toString()+')">Назад</button>'
 	
 }
-
 function ukaz(id,dlina){
 	/// текущая строка черная, остальные белые
 	for (m=0;m<dlina;m++){
@@ -745,23 +698,24 @@ function ukaz(id,dlina){
 			st='t'+id.toString()
 			document.getElementById(st).style.border="solid"
 			
-	
 		} else {
 			st='t'+m.toString()
 			document.getElementById(st).style.border=""
+			//document.getElementById(st).style.backgroundColor="#f2f2f2"
 		}	
 	}
 }
 
-function give_tablename_and_id(m){
-var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
-var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст','Адрес','Телефон'] //personal
-var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
-var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
-var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
-var arr6=['Дата продажи','Продажа','Количество','Продавец','Товар','Скидка (процент)']//sales
-var m=['0','1','2','3','4','5'];
+//////////////////////////////////////////////
 
+function give_tablename_and_id(m){
+var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
+var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
+var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)'] //postavshik
+var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус'] //salesman
+var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+var m=['0','1','2','3','4','5'];
 var ans=[]
 var arr=[]
 	
@@ -798,7 +752,6 @@ for (l=0;l<m.length;l++){
 			break
 		}	
 }
-
 	var table=document.getElementById("TID")
 	
 	for (l=0;l<table.rows.length;l++){
@@ -809,17 +762,15 @@ for (l=0;l<m.length;l++){
 			break
 		}	
 	}
-
 	return ans
 }
-
 function delet(){
- var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
+ var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
  var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
- var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
- var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
- var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
- var arr6=['Дата продажи','Продажа','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+ var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)'] //postavshik
+ var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус'] //salesman
+ var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+ var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
  var m=['0','1','2','3','4','5'];
  var ans=[]
  
@@ -839,11 +790,10 @@ function delet(){
 		url : "delete.php",
 		data : { q1: q1,table:ans[0],mode:mode},
 		dataType : "json",	
-
 	success: function(data){
 		var str = JSON.stringify(data);
 		var tmp = JSON.parse(str);
-		//console.log(tmp)
+		
 		if (ans[0]=="greeds"){
 			newtable('0')
 		}
@@ -870,7 +820,6 @@ function delet(){
 	
 	});
 }	
-
 function zapros(str,dc,what,mode){
 	var tt=''
 	$.ajax ({
@@ -888,17 +837,14 @@ function zapros(str,dc,what,mode){
 				tmp[i][what]+'</a>'
 			}
 			document.getElementById(dc).innerHTML=tt
-		} else {
-			tt=tmp[0][what]
-			document.getElementById(dc).value=tt
-		}
+		} 
 	}
 	});
 	
 	
-
 }
 
+/* Редактирование*/
 function change(){
 	var m=['0','1','2','3','4','5'];
 	var st1=''
@@ -914,8 +860,8 @@ function change(){
 	}
 	
 	if (table_name=="greeds"){
-			var st="SELECT `Категория товара` FROM `sklad`"
-			zapros(st,"dc_2",'Категория товара',0)
+			var st="SELECT `Производитель` FROM `greeds`"
+			zapros(st,"dc_2",'Производитель',0)
 			
 			var st="SELECT `Отдел` FROM `otdel`"
 			zapros(st,"dc_3",'Отдел',0)
@@ -929,25 +875,28 @@ function change(){
 	if (table_name=="postavshik"){
 			var st="SELECT `Поставщик` FROM `postavshik`"
 			zapros(st,"dc_1",'Поставщик',0)
-		
-			var st="SELECT `Категория товара` FROM `sklad`"
-			zapros(st,"dc_2",'Категория товара',0)
 	}
 	
 	if (table_name=="salesman"){
 			var st="SELECT `ФИО` FROM `personal` WHERE `Должность`='Продавец'"
 			zapros(st,"dc_1",'ФИО',0)
 		
-			var st="SELECT `Отдел` FROM `otdel`"
-			zapros(st,"dc_2",'Отдел',0)
+			var st="SELECT `График` FROM `job`"
+			zapros(st,"dc_2",'График',0)
+			
+			var st="SELECT `Статус` FROM `salesman`"
+			zapros(st,"dc_3",'Статус',0)
 	}
 	
 	if (table_name=="sklad"){
-			var st="SELECT `Категория товара` FROM `sklad`"
-			zapros(st,"dc_1",'Категория товара',0)
+			var st="SELECT `Наименование` FROM `greeds`"
+			zapros(st,"dc_1",'Наименование',0)
+			
+			var st="SELECT `Поставщик` FROM `postavshik`"
+			zapros(st,"dc_2",'Поставщик',0)
 			
 			var st="SELECT `ФИО` FROM `personal`"
-			zapros(st,"dc_2",'ФИО',0)
+			zapros(st,"dc_3",'ФИО',0)
 	}
 	
 	if (table_name=="sales"){
@@ -961,11 +910,14 @@ function change(){
 	
 	var tdItems = document.getElementsByTagName("td");
 	
+	$(document).bind("contextmenu",function(e){
+		return false;
+	});
+	
 	for (var i = 0; i < tdItems.length; i++){
 		tdItems[i].addEventListener('contextmenu', tdClick,false)
 	}
 }
-
 function tdClick(e) {
 	var m=['0','1','2','3','4','5'];
 	for (l=0;l<m.length;l++){
@@ -983,12 +935,15 @@ function tdClick(e) {
 	var p=e.target.id;
 	p=p[p.length-1]
 	
+	if (table_name=="greeds" && p==0){
+		var dropDownContent = $("#dc_1").clone(true);
+	}
 	
-	if (table_name=="greeds" && p==3){
+	if (table_name=="greeds" && p==2){
 		var dropDownContent = $("#dc_2").clone(true);
 	}
     
-	if (table_name=="greeds" && p==4){
+	if (table_name=="greeds" && p==3){
 		var dropDownContent = $("#dc_3").clone(true);
 	}
 	
@@ -1000,40 +955,44 @@ function tdClick(e) {
 		var dropDownContent = $("#dc_1").clone(true);
 	}
 	
-	if (table_name=="postavshik" && p==2){
-		var dropDownContent = $("#dc_2").clone(true);
-	}
-	
 	if (table_name=="salesman" && p==0){
 		var dropDownContent = $("#dc_1").clone(true);
 	}
 	
-	if (table_name=="salesman" && p==1){
+	if (table_name=="salesman" && p==2){
 		var dropDownContent = $("#dc_2").clone(true);
+	}
+	
+	if (table_name=="salesman" && p==5){
+		var dropDownContent = $("#dc_3").clone(true);
 	}
 	
 	if (table_name=="sklad" && p==0){
 		var dropDownContent = $("#dc_1").clone(true);
 	}
 	
-	if (table_name=="sklad" && p==4){
+	if (table_name=="sklad" && p==1){
 		var dropDownContent = $("#dc_2").clone(true);
 	}
 	
-	if (table_name=="sales" && p==3){
+	if (table_name=="sklad" && p==4){
+		var dropDownContent = $("#dc_3").clone(true);
+	}
+	
+	if (table_name=="sales" && p==2){
 		var dropDownContent = $("#dc_1").clone(true);
 	}
 	
-	if (table_name=="sales" && p==4){
+	if (table_name=="sales" && p==3){
 		var dropDownContent = $("#dc_2").clone(true);
 	}
 	
-	if ((table_name=="greeds" & (p==3 || p==4))
+	if ((table_name=="greeds" & (p==2 || p==3))
 		|| (table_name=="personal" & (p==2))
-		|| (table_name=="postavshik" & (p==0 || p==2))
-		|| (table_name=="salesman" & (p==0 || p==1))
-		|| (table_name=="sklad" & (p==0 || p==4))
-		|| (table_name=="sales" & (p==3 || p==4))
+		|| (table_name=="postavshik" & (p==0))
+		|| (table_name=="salesman" & (p==0 || p==2 || p==5))
+		|| (table_name=="sklad" & (p==0 || p==1 || p==4))
+		|| (table_name=="sales" & (p==2 || p==3))
 	){
 		$(dropDownContent).css({"visibility":"visible"});
 		$(this).append($(dropDownContent));
@@ -1059,14 +1018,13 @@ function tdClick(e) {
 	
 	
 };
-
 function save(){
-var arr1=['Наименование','Цена(сум)','Производитель','Код категории','Код отдела','Срок хранения (суток)','Количество(штук)'] //greeds
+ var arr1=['Наименование','Цена(сум)','Производитель','Код отдела','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
  var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
- var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
- var arr4=['Код сотрудника','Код отдела','План по прибыли(сум/месяц)'] //salesman
- var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
- var arr6=['Дата продажи','Продажа','Количество(штук)','Код продавца','Код товара','Скидка (процент)']//sales
+ var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)'] //postavshik
+ var arr4=['Код сотрудника','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус'] //salesman
+ var arr5=['Код товара','Код поставки','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+ var arr6=['Дата продажи','Количество(штук)','Код продавца','Код товара','Скидка (процент)']//sales
  var m=['0','1','2','3','4','5'];
  var ans=[]
  var arr=[]
@@ -1095,129 +1053,54 @@ var arr1=['Наименование','Цена(сум)','Производите�
   if (ans[0]=="sales"){
 	arr=arr6
  }
-
-	if (ans[0]=="greeds"){
-		var qr="SELECT `Номер` FROM sklad WHERE `Категория товара`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'3').innerHTML+"'"
-		zapros(qr,"tmp_input2",'Номер',1)
-		
-		var qr="SELECT `Номер` FROM otdel WHERE `Отдел`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'4').innerHTML+"'"
-		zapros(qr,"tmp_input3",'Номер',1)
-	}
 	
-	if (ans[0]=="personal"){
-		var qr="SELECT `Номер` FROM personal WHERE `Должность`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'2').innerHTML+"'"
-		zapros(qr,"tmp_input1",'Номер',1)
-	}
-	
-	if (ans[0]=="postavshik"){
-		var qr="SELECT `Номер` FROM postavshik WHERE `Поставщик`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'0').innerHTML+"'"
-		zapros(qr,"tmp_input1",'Номер',1)
 		
-		var qr="SELECT `Номер` FROM sklad WHERE `Категория товара`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'2').innerHTML+"'"
-		zapros(qr,"tmp_input2",'Номер',1)
-	}
-		
-		
-	if (ans[0]=="salesman"){
-		var qr="SELECT `Номер` FROM personal WHERE `ФИО`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'0').innerHTML+"'"
-		zapros(qr,"tmp_input1",'Номер',1)
-		
-		var qr="SELECT `Номер` FROM otdel WHERE `Отдел`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'1').innerHTML+"'"
-		zapros(qr,"tmp_input2",'Номер',1)
-	}
-		
-	
-    if (ans[0]=="sklad"){
-		var qr="SELECT `Номер` FROM sklad WHERE `Категория товара`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'0').innerHTML+"'"
-		zapros(qr,"tmp_input1",'Номер',1)
-		
-		var qr="SELECT `Номер` FROM personal WHERE `ФИО`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'4').innerHTML+"'"
-		zapros(qr,"tmp_input2",'Номер',1)
-	}
-	
-	if (ans[0]=="sales"){
-		var qr="SELECT `Номер` FROM personal WHERE `Должность`=='Продавец' AND `ФИО`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'3').innerHTML+"'"
-		zapros(qr,"tmp_input1",'Номер',1)
-		
-		var qr="SELECT `Номер` FROM greeds WHERE `Наименование`='"+
-		document.getElementById('tabled_'+ans[1].toString()+'4').innerHTML+"'"
-		zapros(qr,"tmp_input2",'Номер',1)
-	}
-			
 	var mystr=''		
 	for (i=0;i<arr.length;i++){
-			if (ans[0]=="greeds" && (arr[i]=='Код категории' || arr[i]=='Код отдела')){
-				
-				if (arr[i]=='Код категории'){
-					mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input2').value+'\", '
-				}
-				
+			if (ans[0]=="greeds" && (arr[i]=='Код отдела')){
 				if (arr[i]=='Код отдела'){
-					mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input3').value+'\", '
+					mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM otdel WHERE `Отдел`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'3').innerHTML+"')"+'\,'
 				}
 				continue
 			}
 			
-			if (ans[0]=="personal" && (arr[i]=='Должность')){
-				if (arr[i]=='Должность'){
-					mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input1').value+'\", '
-				}
-				
-				continue
-			}
-			
-			if (ans[0]=="postavshik" && (arr[i]=='Поставщик' || arr[i]=='Код категории')){
-				if (arr[i]=='Поставщик'){
-					mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input1').value+'\", '
-				}
-				
-				if (arr[i]=='Код категории'){
-					mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input2').value+'\", '
-				}
-				
-				continue
-			}
-			
-			if (ans[0]=="salesman" && (arr[i]=='Код продавца' || arr[i]=='Код отдела')){
-					if (arr[i]=='Код продавца'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input1').value+'\", '	
-					}
-					
-					if (arr[i]=='Код отдела'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input2').value+'\", '	
+			if (ans[0]=="salesman" && (arr[i]=='Код сотрудника')){
+					if (arr[i]=='Код сотрудника'){
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM personal WHERE `ФИО`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'0').innerHTML+"')"+'\,'
 					}
 					
 					continue
 			}
 			
-			if (ans[0]=="sklad" && (arr[i]=='Категория товара' || arr[i]=='Получил')){
-					if (arr[i]=='Категория товара'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input1').value+'\", '	
+			if (ans[0]=="sklad" && (arr[i]=='Получил' || arr[i]=='Код товара' || arr[i]=='Код поставки')){
+					if (arr[i]=='Код товара'){
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM greeds WHERE `Наименование`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'0').innerHTML+"')"+'\,'	
 					}
-				
+					
+					if (arr[i]=='Код поставки'){
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM postavshik WHERE `Поставщик`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'1').innerHTML+"')"+'\,'	
+					}
+					
 					if (arr[i]=='Получил'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input2').value+'\", '	
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM personal WHERE `ФИО`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'4').innerHTML+"')"+'\,'	
 					}
 					continue
 			}
 			
 			if (ans[0]=="sales" && (arr[i]=='Код продавца' || arr[i]=='Код товара')){
 				if (arr[i]=='Код продавца'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input1').value+'\", '	
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM salesman WHERE `Код сотрудника`=(SELECT `Номер` FROM personal WHERE `Должность`="Продавец" AND `ФИО`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'2').innerHTML+"'))"+'\,'
 				}
 				
 				if (arr[i]=='Код товара'){
-						mystr=mystr+'`'+arr[i]+'`= \"'+document.getElementById('tmp_input2').value+'\", '	
+						mystr=mystr+'`'+arr[i]+'`= \ (SELECT `Номер` FROM greeds WHERE `Наименование`='+
+						"'"+document.getElementById('tabled_'+ans[1].toString()+'3').innerHTML+"')"+'\,'
 				}
 				
 				continue
@@ -1234,7 +1117,7 @@ var arr1=['Наименование','Цена(сум)','Производите�
 	var mode='SELECT * FROM '+ans[0]+' LIMIT 1 OFFSET '+ans[1]
 	
 	console.log(mystr)
-
+	
 	$.ajax ({
 	type:"POST",
 	url : "delete.php",
@@ -1272,11 +1155,9 @@ var arr1=['Наименование','Цена(сум)','Производите�
 }	
 
 function write(arr,tmp,mode){
-	var st1='<br><table border="1;solid" style="margin:5px ; border-collapse: collapse">'
+	var st1='<br><table id="TID">'
 	st1=st1+"<tr align='center'>"
-			
-	console.log(tmp)
-			
+					
 	for (m=0;m<arr.length;m++){
 		if (mode==0){
 			var a=arr[m].split('.')
@@ -1315,7 +1196,6 @@ function write(arr,tmp,mode){
 		
 	document.getElementById('mydiv3').innerHTML=st1;
 }
-
 function give(arr,names){
 	var ans=[]
 	var arr_u=[]
@@ -1325,10 +1205,10 @@ function give(arr,names){
 	
 	for (t=0;t<arr.length;t++){
 		for (l=0;l<arr[t].length;l++){
-			if ((names[t]=="greeds" && l!=2 && l!=3 && l!=4) || (names[t]=="personal" && l!=2) ||
-				(names[t]=="postavshik" && l!=0 && l!=2) ||
-				(names[t]=="salesman" && l==2) ||
-				(names[t]=="sklad" && l!=0 && l!=4) || (names[t]=="sales" && l!=3 && l!=4)
+			if ((names[t]=="greeds" && (l!=2 && l!=3)) || (names[t]=="personal" && l!=2) ||
+				(names[t]=="postavshik" && l!=0) ||
+				(names[t]=="salesman" && (l!=0 && l!=2 && l!=5)) ||
+				(names[t]=="sklad" && l!=0 && l!=4 && l!=1) || (names[t]=="sales" && (l!=2 && l!=3))
 			){
 			
 			var p=document.getElementById("textfield_"+l.toString()+'_'+names[t]).value
@@ -1347,11 +1227,12 @@ function give(arr,names){
 			} 
 			
 			else {
-				if ((names[t]=="personal" && l==2) || (names[t]=="greeds" && ((l==2)||(l==3) || (l==4)))
-						|| (names[t]=="postavshik" && (l==0 || l==2))
-						|| (names[t]=="salesman" && l!=2)
-						|| (names[t]=="sklad" && (l==0 || l==4) || (names[t]=="sales" && (l==3 || l==4))) 
+				if ((names[t]=="personal" && l==2) || (names[t]=="greeds" && ((l==2)||(l==3)))
+						|| (names[t]=="postavshik" && (l==0))
+						|| (names[t]=="salesman" && (l==0 || l==2 || l==5))
+						|| (names[t]=="sklad" && (l==0 || l==4 || l==1)) || (names[t]=="sales" && (l==2 || l==3)) 
 				){
+					
 					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
 					
 					if (first==0 && p.length!=""){ //начало условия без and
@@ -1377,14 +1258,13 @@ function give(arr,names){
 	
 	return ans;
 }
-
 function ok(m){
-	var arr1=['g.`Наименование`','g.`Цена(сум)`','g.`Производитель`','skl.`Категория товара`','o.`Отдел`','g.`Срок хранения (суток)`','g.`Количество(штук)`'] //greeds
+	var arr1=['g.`Наименование`','g.`Цена(сум)`','g.`Производитель`','o.`Отдел`','g.`Срок хранения (суток)`','g.`Кол-во в отделе(штук)`'] //greeds
 	var arr2=['pl.`ФИО`','pl.`Трудовой стаж (лет)`','pl.`Должность`','pl.`Зарплата (сум)`','pl.`Возраст (лет)`','pl.`Адрес`','pl.`Телефон`'] //personal
-	var arr3=['pt.`Поставщик`','pt.`Дата следующей поставки`','skl.`Категория товара`','pt.`Адрес`','pt.`Телефон`'] //postavshik
-	var arr4=['pl.`ФИО`','o.`Отдел`','sl.`План по прибыли(сум/месяц)`'] //salesman
-	var arr5=['skl.`Категория товара`','skl.`Дата получения`','skl.`Номер стеллажа`','skl.`Номер полки`','pl.`ФИО`']//sklad
-	var arr6=['s.`Дата продажи`','s.`Продажа`','s.`Количество(штук)`','pl.`ФИО`','g.`Наименование`','s.`Скидка (процент)`']//sales
+	var arr3=['pt.`Поставщик`','pt.`Дата поставки`','pt.`Юридический адрес`','pt.`Телефон`','pt.`Цена поставки(сум)`','pt.`Оплачено(процент)`','pt.`Поставлено товара(штук)`'] //postavshik
+	var arr4=['pl.`ФИО`','sl.`План по прибыли(сум/месяц)`','sl.`График работы`','sl.`Премия(процент от продаж)`','sl.`Работа в магазине(лет)`','sl.`Статус`'] //salesman
+	var arr5=['g.`Наименование`','pt.`Поставщик`','skl.`Номер стеллажа`','skl.`Номер полки`','pl.`ФИО`','skl.`На складе(штук)`']//sklad
+	var arr6=['s.`Дата продажи`','s.`Количество(штук)`','pl.`ФИО`','g.`Наименование`','s.`Скидка (процент)`']//sales
 	
 	var m=['0','1','2','3','4','5'];
 	var ans=[]
@@ -1434,7 +1314,6 @@ function ok(m){
 	   }
 	}
 	
-	
 	if (globo_mod!=2){
 		ans=give(s_arr,names)
 	} else {
@@ -1468,9 +1347,8 @@ function ok(m){
 	
 	if (names.length==1){
 		if (names[0]=="greeds g"){
-			var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,skl.`Категория товара`,o.`Отдел`,"+
-			"g.`Срок хранения (суток)`,g.`Количество(штук)` FROM (greeds g LEFT JOIN otdel o ON g.`Код Отдела`=o.`Номер`) "+
-			"LEFT JOIN sklad skl ON g.`Код категории`=skl.`Номер` ";
+			var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,"+
+			"g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)` FROM (greeds g LEFT JOIN otdel o ON g.`Код Отдела`=o.`Номер`) "
 		}
 		
 		if (names[0]=="personal pl"){
@@ -1478,23 +1356,24 @@ function ok(m){
 		}
 		
 		if (names[0]=="postavshik pt"){
-			var st="SELECT pt.`Поставщик`,pt.`Дата следующей поставки`,skl.`Категория товара`,pt.`Адрес`,pt.`Телефон` "+
-			"FROM (postavshik pt LEFT JOIN sklad skl ON pt.`Код категории`=skl.`Номер`) "
+			var st="SELECT pt.`Поставщик`,pt.`Дата поставки`,pt.`Юридический адрес`,pt.`Телефон`, "+
+			"pt.`Цена поставки(сум)`,pt.`Оплачено(процент)`,pt.`Поставлено товара(штук)` FROM postavshik pt "
 		}
 		
 		if (names[0]=="salesman sl"){
-				var st="SELECT pl.`ФИО`,o.`Отдел`,sl.`План по прибыли(сум/месяц)` "+
-				"FROM (salesman sl LEFT JOIN otdel o ON sl.`Код Отдела`=o.`Номер`) "+
+				var st="SELECT pl.`ФИО`,sl.`План по прибыли(сум/месяц)`,sl.`График работы`,sl.`Премия(процент от продаж)`,"+
+				"sl.`Работа в магазине(лет)`,sl.`Статус` FROM salesman sl "+
 				"LEFT JOIN personal pl ON sl.`Код сотрудника`=pl.`Номер` "
 		}
 		
 		if (names[0]=="sklad skl"){
-			var st="SELECT skl.`Категория товара`,skl.`Дата получения`,skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` "+
-			"FROM (sklad skl LEFT JOIN personal pl ON skl.`Получил`=pl.`Номер`) "
+			var st="SELECT g.`Наименование`,pt.`Поставщик`,skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS 'Получил',skl.`На складе(штук)` "+
+			"FROM (sklad skl LEFT JOIN personal pl ON skl.`Получил`=pl.`Номер`) LEFT JOIN greeds g ON g.`Номер`=skl.`Код товара` "+
+			"LEFT JOIN postavshik pt ON skl.`Код поставки`=pt.`Номер`"
 		}
 		
 		if (names[0]=="sales s"){
-				var st="SELECT s.`Дата продажи`,s.`Продажа`,s.`Количество(штук)`,pl.`ФИО`,g.`Наименование`,s.`Скидка (процент)` "+
+				var st="SELECT s.`Дата продажи`,s.`Количество(штук)`,pl.`ФИО` AS 'Продавец',g.`Наименование`,s.`Скидка (процент)` "+
 				"FROM (sales s LEFT JOIN greeds g ON s.`Код товара`=g.`Номер`) LEFT "+
 				"JOIN salesman sl ON sl.`Номер`=s.`Код продавца` LEFT JOIN personal pl ON sl.`Код сотрудника`=pl.`Номер` "
 		}
@@ -1502,50 +1381,113 @@ function ok(m){
 	
 	
 	if (names.length==2){
-		var st="SELECT * FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
-		
-		if (names[0]=="greeds g" && names[1]=="sales s"){
-		  st=st+ "s.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` LEFT JOIN sklad skl ON g.`Код категории`=skl.`Номер` LEFT JOIN salesman sl ON s.`Код продавца`=sl.`Номер` LEFT JOIN personal pl ON pl.`Номер`=sl.`Код сотрудника` "	
+		if ((names[0]=="greeds g" && names[1]=="sales s") || (names[1]=="greeds g" && names[0]=="sales s")) {
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "s.`Дата продажи`,s.`Количество(штук)`,pl.`ФИО` AS `Продавец`,s.`Скидка (процент)`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "s.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` LEFT JOIN sklad skl "+
+		  "ON skl.`Код товара`=g.`Номер` LEFT JOIN salesman sl "+
+		  "ON s.`Код продавца`=sl.`Номер` LEFT JOIN personal pl ON pl.`Номер`=sl.`Код сотрудника` "	
+		  console.log(st)
 		}
 		
-		if (names[1]=="salesman sl" && names[0]=="personal pl"){
-		  st=st+ "sl.`Код сотрудника`=pl.`Номер`) LEFT JOIN otdel o ON sl.`Код отдела`=o.`Номер` "	
+		if ((names[0]=="greeds g" && names[1]=="sklad skl") || (names[1]=="greeds g" && names[0]=="sklad skl")) {
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "g.`Наименование`,pt.`Поставщик`,skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS 'Получил',skl.`На складе(штук)`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "skl.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер`  "+
+		  "LEFT JOIN personal pl ON skl.`Получил`=pl.`Номер` LEFT JOIN postavshik pt ON pt.`Номер`=skl.`Код поставки` "
 		}
 		
-		if (names[1]=="sklad skl" && names[0]=="greeds g"){
-		  st=st+ "g.`Код категории`=skl.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` "	
+		if ((names[0]=="postavshik pt" && names[1]=="sklad skl") || (names[1]=="postavshik pt" && names[0]=="sklad skl")) {
+		  var st="SELECT pt.`Поставщик`,pt.`Дата поставки`,pt.`Юридический адрес`,pt.`Телефон`,pt.`Цена поставки(сум)`,pt.`Оплачено(процент)`"+
+		  ",pt.`Поставлено товара(штук)`,g.`Наименование`,skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS 'Получил',skl.`На складе(штук)`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "skl.`Код поставки`=pt.`Номер`) LEFT JOIN greeds g ON g.`Номер`=skl.`Код товара`  "+
+		  "LEFT JOIN personal pl ON skl.`Получил`=pl.`Номер`"
 		}
 		
-		if (names[0]=="postavshik pt" && names[1]=="sklad skl"){
-		  st=st+ "pt.`Код категории`=skl.`Номер`) "	
+		if ((names[0]=="personal pl" && names[1]=="sklad skl") || (names[1]=="personal " && names[0]=="sklad skl")) {
+		  var st="SELECT pl.`ФИО` AS 'Получил',pl.`Трудовой стаж (лет)`,pl.`Должность`,pl.`Зарплата (сум)`,pl.`Возраст (лет)`,pl.`Адрес`,pl.`Телефон`,"+
+		  "g.`Наименование`,pt.`Поставщик`,skl.`Номер стеллажа`,skl.`Номер полки`,skl.`На складе(штук)`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "skl.`Получил`=pl.`Номер`)"+
+		  "LEFT JOIN greeds g ON g.`Номер`=skl.`Код товара` LEFT JOIN postavshik pt ON pt.`Номер`=skl.`Код поставки` "
+		}
+		
+		if ((names[1]=="salesman sl" && names[0]=="sales s") || (names[0]=="salesman sl" && names[1]=="sales s") ){
+		  var st="SELECT s.`Дата продажи`,s.`Количество(штук)`,pl.`ФИО` AS `Продавец`,g.`Наименование`,s.`Скидка (процент)`,"+
+		  "sl.`План по прибыли(сум/месяц)`,sl.`График работы`,sl.`Премия(процент от продаж)`,sl.`Работа в магазине(лет)`,sl.`Статус`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "s.`Код продавца`=sl.`Номер`) LEFT JOIN personal pl ON sl.`Код сотрудника`=pl.`Номер` LEFT JOIN greeds g ON g.`Номер`=s.`Код товара`"	
+		}
+		
+		
+		if ((names[1]=="salesman sl" && names[0]=="personal pl") || (names[0]=="salesman sl" && names[1]=="personal pl") ){
+		  var st="SELECT pl.`ФИО`,pl.`Трудовой стаж (лет)`,pl.`Должность`,pl.`Зарплата (сум)`,pl.`Возраст (лет)`,pl.`Адрес`,pl.`Телефон`,"+
+		  "sl.`План по прибыли(сум/месяц)`,sl.`График работы`,sl.`Премия(процент от продаж)`,sl.`Работа в магазине(лет)`,sl.`Статус`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
+		  st=st+ "sl.`Код сотрудника`=pl.`Номер`) "	
 		}
 	}
 	
 	if (names.length==3){
-		if (names[0]=="greeds g" && names[2]=="sklad skl" && names[1]=="postavshik pt"){
-		  var st="SELECT * FROM ("+names[0]+" LEFT JOIN "+names[2]+" ON "
-		  st=st+ "g.`Код категории`=skl.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` LEFT JOIN postavshik pt ON pt.`Код категории`=skl.`Номер` "	
-		}
-		
 		if (names[0]=="greeds g" && names[1]=="salesman sl" && names[2]=="sales s"){
-			 var st="SELECT * FROM ("+names[0]+" LEFT JOIN "+names[2]+" ON "
-			 st=st+ "s.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` LEFT JOIN sklad skl ON g.`Код категории`=skl.`Номер` LEFT JOIN salesman sl ON s.`Код продавца`=sl.`Номер` LEFT JOIN personal pl ON pl.`Номер`=sl.`Код сотрудника`  "	
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "s.`Дата продажи`,s.`Количество(штук)`,pl.`ФИО` AS 'Продавец',g.`Наименование`,s.`Скидка (процент)`"+
+		  ",sl.`План по прибыли(сум/месяц)`,sl.`График работы`,sl.`Премия(процент от продаж)`,sl.`Работа в магазине(лет)`,sl.`Статус`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[2]+" ON "
+		  st=st+ "s.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` "+
+		  "LEFT JOIN salesman sl ON s.`Код продавца`=sl.`Номер` "+
+		  "LEFT JOIN personal pl ON pl.`Номер`=sl.`Код сотрудника` "
 		}
 		
-		if (names[0]=="personal pl" && names[1]=="salesman sl" && names[2]=="sales s"){
-		     var st="SELECT * FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
-			 st=st+ "sl.`Код сотрудника`=pl.`Номер`) LEFT JOIN otdel o ON sl.`Код отдела`=o.`Номер`  LEFT JOIN sales s ON s.`Код продавца`=sl.`Номер` "	
+		if (names[0]=="greeds g" && names[2]=="sklad skl" && names[1]=="postavshik pt"){
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS `Получил товар на складе`,skl.`На складе(штук)`,"+
+		  "pt.`Поставщик`,pt.`Дата поставки`,pt.`Юридический адрес`,pt.`Телефон`,pt.`Цена поставки(сум)`,pt.`Оплачено(процент)`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[2]+" ON "
+		  st=st+ "skl.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` "+
+		  "LEFT JOIN postavshik pt ON pt.`Номер`=skl.`Код поставки` "+
+		  "LEFT JOIN personal pl ON pl.`Номер`=skl.`Получил` "
 		}
 		
-		if (names[0]=="personal pl" && names[1]=="postavshik pt" && names[2]=="sklad skl"){
-			 var st="SELECT * FROM ("+names[2]+" LEFT JOIN "+names[1]+" ON "
-			 st=st+ "pt.`Код категории`=skl.`Номер`) LEFT JOIN personal pl ON skl.`Получил`=pl.`Номер` "
+		if (names[2]=="sklad skl" && names[1]=="postavshik pt" && names[0]=="personal pl"){
+		  var st="SELECT "+
+		  "skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS `Получил товар на складе`,skl.`На складе(штук)`,"+
+		  "pt.`Поставщик`,pt.`Дата поставки`,pt.`Юридический адрес`,pt.`Телефон`,pt.`Цена поставки(сум)`,pt.`Оплачено(процент)`,"+
+		  "pl.`ФИО`,pl.`Трудовой стаж (лет)`,pl.`Должность`,pl.`Зарплата (сум)`,pl.`Возраст (лет)`,pl.`Адрес`,pl.`Телефон`"+
+		  " FROM ( sklad skl LEFT JOIN greeds g ON "
+		  
+		  st=st+ "skl.`Код товара`=g.`Номер`)"+
+		  "LEFT JOIN postavshik pt ON pt.`Номер`=skl.`Код поставки` "+
+		  "LEFT JOIN personal pl ON pl.`Номер`=skl.`Получил` "
+		}
+	}
+	
+	if (names.length==4){
+		  if (names[0]=="greeds g" && names[3]=="sklad skl" && names[2]=="postavshik pt" && names[1]=="personal pl"){
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "skl.`Номер стеллажа`,skl.`Номер полки`,pl.`ФИО` AS `Получил товар на складе`,skl.`На складе(штук)`,"+
+		  "pt.`Поставщик`,pt.`Дата поставки`,pt.`Юридический адрес`,pt.`Телефон`,pt.`Цена поставки(сум)`,pt.`Оплачено(процент)`,"+
+		  "pl.`ФИО`,pl.`Трудовой стаж (лет)`,pl.`Должность`,pl.`Зарплата (сум)`,pl.`Возраст (лет)`,pl.`Адрес`,pl.`Телефон`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[3]+" ON "
+		  st=st+ "skl.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` "+
+		  "LEFT JOIN postavshik pt ON pt.`Номер`=skl.`Код поставки` "+
+		  "LEFT JOIN personal pl ON pl.`Номер`=skl.`Получил` "
 		}
 		
-		if (names[0]=="personal pl" && names[1]=="salesman sl" && names[2]=="sklad skl"){
-			 var st="SELECT * FROM ("+names[0]+" LEFT JOIN "+names[1]+" ON "
-			 st=st+ "sl.`Код сотрудника`=pl.`Номер`) LEFT JOIN otdel o ON sl.`Код отдела`=o.`Номер` LEFT JOIN sklad skl ON skl.`Получил`=pl.`Номер` "
+		if (names[0]=="greeds g" && names[1]=="personal pl" && names[2]=="salesman sl" && names[3]=="sales s"){
+		  var st="SELECT g.`Наименование`,g.`Цена(сум)`,g.`Производитель`,o.`Отдел`,g.`Срок хранения (суток)`,g.`Кол-во в отделе(штук)`,"+
+		  "s.`Дата продажи`,s.`Количество(штук)`,pl.`ФИО` AS 'Продавец',g.`Наименование`,s.`Скидка (процент)`"+
+		  ",sl.`План по прибыли(сум/месяц)`,sl.`График работы`,sl.`Премия(процент от продаж)`,sl.`Работа в магазине(лет)`,sl.`Статус`"+
+		  ", pl.`Трудовой стаж (лет)`,pl.`Должность`,pl.`Зарплата (сум)`,pl.`Возраст (лет)`,pl.`Адрес`,pl.`Телефон`"+
+		  " FROM ("+names[0]+" LEFT JOIN "+names[3]+" ON "
+		  st=st+ "s.`Код товара`=g.`Номер`) LEFT JOIN otdel o ON g.`Код отдела`=o.`Номер` "+
+		  "LEFT JOIN salesman sl ON s.`Код продавца`=sl.`Номер` "+
+		  "LEFT JOIN personal pl ON pl.`Номер`=sl.`Код сотрудника` "
 		}
+		
 	}
 	
 	if (ans[1].length>0){
@@ -1555,21 +1497,23 @@ function ok(m){
 	for (l=0;l<ans[1].length;l++){
 		st=st+ans[1][l]
 	}
+
+	console.log(st)
 	
 	$.ajax ({
 	type:"POST",
 	url : "refresh.php",
 	data : {str:st},
 	dataType : "json",	
-
 	success: function(data){
 		var str = JSON.stringify(data);
 		var tmp = JSON.parse(str);
 		
-		if (tmp.length>1){
+		if (tmp.length>0){
 			var keys=Object.keys(tmp[0])
 			write(keys,tmp,1)
 		} else {
+			
 			if (names[0]=="greeds g"){
 				write(arr1,tmp,0)
 			}
@@ -1599,12 +1543,12 @@ function ok(m){
 }	
 
 function tosearch(){
- var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
+ var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
  var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
- var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
- var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
- var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
- var arr6=['Дата продажи','Продажа','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+ var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)'] //postavshik
+ var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус'] //salesman
+ var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+ var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
  var m=['0','1','2','3','4','5'];
  
  document.getElementById('vvod').style.visibility="hidden"
@@ -1651,14 +1595,13 @@ function tosearch(){
 	 showqueries(arr6,table_name,2)
  }
 }
-
 function add_q(i){
- var arr1=['Наименование','Цена(сум)','Производитель','Категория товара','Отдел','Срок хранения (суток)','Количество(штук)'] //greeds
+ var arr1=['Наименование','Цена(сум)','Производитель','Отдел','Срок хранения (суток)','Кол-во в отделе(штук)'] //greeds
  var arr2=['ФИО','Трудовой стаж (лет)','Должность','Зарплата (сум)','Возраст (лет)','Адрес','Телефон'] //personal
- var arr3=['Поставщик','Дата следующей поставки','Категория товара','Адрес','Телефон'] //postavshik
- var arr4=['ФИО','Отдел','План по прибыли(сум/месяц)'] //salesman
- var arr5=['Категория товара','Дата получения','Номер стеллажа','Номер полки','Получил']//sklad
- var arr6=['Дата продажи','Продажа','Количество(штук)','Продавец','Товар','Скидка (процент)']//sales
+ var arr3=['Поставщик','Дата поставки','Юридический адрес','Телефон','Цена поставки(сум)','Оплачено(процент)','Поставлено товара(штук)','Нужно оплатить'] //postavshik
+ var arr4=['ФИО','План по прибыли(сум/месяц)','График работы','Премия(процент от продаж)','Работа в магазине(лет)','Статус','Оплата при выполнении плана'] //salesman
+ var arr5=['Товар','Поставщик','Номер стеллажа','Номер полки','Получил','На складе(штук)']//sklad
+ var arr6=['Дата продажи','Количество(штук)','Продавец','Товар','Скидка (процент)','Цена со скидкой']//sales
  var m=['0','1','2','3','4','5'];
  
  //test
@@ -1669,7 +1612,7 @@ function add_q(i){
 		count++;
 	   }
 	   
-	   if (count>3){
+	   if (count>4){
 		    checkBox.checked = false;
 			ochist()
 	}
@@ -1715,7 +1658,6 @@ function add_q(i){
 		}
 	 }
 }
-
 function ochist(){
 	if (globo_mod==0 || globo_mod==1){
 		var m=['0','1','2','3','4','5'];
@@ -1753,29 +1695,32 @@ function ochist(){
 	}
 		
 	if (globo_mod==2){
-		tosearch();  
+		tosearch(); 
+		globo_mod=0
 	}
 }	
+function kb(id_){
+	var table_name='greeds'
+	id=id_.id.split('character')
+	var t =document.getElementById("character"+id[1]).value;
+	var znak=['>','<','=','!=','>=','<=','(a,b)','[a,b]','[a,b)','(a,b]']
+
+	if (t==">" || t==">=" || t=="=" || t=="!="){
+		document.getElementById("t_2"+id[1]).style.visibility="visible";
+		document.getElementById("t_1"+id[1]).style.visibility="hidden";
+	}
 	
-function kb(l){
-var t =document.getElementById("character"+l.toString()).value;
-var znak=['>','<','=','!=','>=','<=','(a,b)','[a,b]','[a,b)','(a,b]']
-if (t==">" || t==">=" || t=="=" || t=="!="){
-	document.getElementById("t_2"+l.toString()).style.visibility="visible";
-	document.getElementById("t_1"+l.toString()).style.visibility="hidden";
+	if (t=="<" || t=="<="){
+		document.getElementById("t_2"+id[1]).style.visibility="hidden";
+		document.getElementById("t_1"+id[1]).style.visibility="visible";
+	}
+	
+	if (t=='(a,b)' || t=='[a,b]' || t=='[a,b)' || t=='(a,b]'){
+		document.getElementById("t_1"+id[1]).style.visibility="visible";
+		document.getElementById("t_2"+id[1]).style.visibility="visible";
+	}
 }
-
-if (t=="<" || t=="<="){
-	document.getElementById("t_2"+l.toString()).style.visibility="hidden";
-	document.getElementById("t_1"+l.toString()).style.visibility="visible";
-}
-
-if (t=='(a,b)' || t=='[a,b]' || t=='[a,b)' || t=='(a,b]'){
-	document.getElementById("t_1"+l.toString()).style.visibility="visible";
-	document.getElementById("t_2"+l.toString()).style.visibility="visible";
-}
-}	
-
+	
 function give_search(arr,names){
 	var ans=[]
 	var arr_u=[]
@@ -1785,11 +1730,10 @@ function give_search(arr,names){
 	
 	for (t=0;t<arr.length;t++){
 		for (l=0;l<arr[t].length;l++){
-			if ((names[t]=="greeds" && l==0) || (names[t]=="personal" && (l==0 || l==5 || l==6)) ||
-				(names[t]=="postavshik" && (l==1 || l==3 || l==4)) ||
-				(names[t]=="sklad" && l==1) || (names[t]=="sales" && (l==0 || l==1))
+			if ((names[t]=="greeds" && (l==0)) || (names[t]=="personal" && (l==0 && l==5 && l==6)) ||
+				(names[t]=="postavshik" && (l==1 || l==2 || l==3)) ||
+				(names[t]=="sales" && (l==0))
 			){
-			
 			
 			var p=document.getElementById("textfield_"+l.toString()+'_'+names[t]).value
 			
@@ -1833,21 +1777,24 @@ function give_search(arr,names){
 			  }
 			} 
 			
-			else {
-				if ((names[t]=="greeds" && (l==1 || l==5 || l==6)) || (names[t]=='personal' && (l==1 || l==3 || l==4))
-					|| (names[t]=="salesman" && l==2) || (names[t]=="sklad" && (l==2 || l==3))
-					|| (names[t]=="sales" && (l==2 || l==5))
-				){
-					var znak=document.getElementById("character"+l.toString()).value
+			if ((names[t]=="greeds" && (l==1 || l==4 || l==5)) || (names[t]=='personal' && (l==1 || l==3 || l==4))
+					|| (names[t]=="postavshik" && ((l==4) || (l==5) || (l==6))) 
+					|| (names[t]=="salesman" && (l==1 || l==3 || l==4 || l==6)) 
+					|| (names[t]=="sklad" && (l==2 || l==3 || l==5))
+					|| (names[t]=="sales" && (l==1 || l==4 || l==5)))
+			{
+					
+					console.log("character"+l.toString()+names[t])
+					var znak=document.getElementById("character"+l.toString()+names[t]).value
 					var fl_vis=1;
 					
-					if (document.getElementById("t_1"+l.toString()).style.visibility=="hidden" &&
-						document.getElementById("t_2"+l.toString()).style.visibility=="hidden"){
+					if (document.getElementById("t_1"+l.toString()+names[t]).style.visibility=="hidden" &&
+						document.getElementById("t_2"+l.toString()+names[t]).style.visibility=="hidden"){
 						fl_vis=0;
 					}
 					
 					if ((fl_vis==1) && (znak=='>' || znak=='>=' || znak=='=' || znak=='!=')){
-						var b=document.getElementById("t_2"+l.toString()).value
+						var b=document.getElementById("t_2"+l.toString()+names[t]).value
 						mystr=mystr+arr[t][l]
 						
 						if (first==0 && b.length!=""){
@@ -1890,7 +1837,7 @@ function give_search(arr,names){
 					}
 					
 					if ((fl_vis==1) && (znak=='<' || znak=='<=')){
-						var b=document.getElementById("t_1"+l.toString()).value
+						var b=document.getElementById("t_1"+l.toString()+names[t]).value
 						mystr=mystr+arr[t][l]
 						if (znak=='<' && b.length!=""){
 							if (first==0){
@@ -1909,13 +1856,12 @@ function give_search(arr,names){
 								arr_u.push(" AND "+arr[t][l]+"<="+"'"+b+"'")
 							}
 						}
-
 					}
 					
 					
 					if ((fl_vis==1) && (znak=='(a,b)' || znak=='[a,b]' || znak=='[a,b)' || znak=='(a,b]')){
-						var a=document.getElementById("t_1"+l.toString()).value
-						var b=document.getElementById("t_2"+l.toString()).value
+						var a=document.getElementById("t_1"+l.toString()+names[t]).value
+						var b=document.getElementById("t_2"+l.toString()+names[t]).value
 						mystr=mystr+arr[t][l]
 						if (znak=='(a,b)' && a.length!="" && b.length!=""){
 							if (first==0){
@@ -1952,18 +1898,10 @@ function give_search(arr,names){
 								arr_u.push(' AND '+arr[t][l]+">="+"'"+a+"' AND "+arr[t][l]+"<="+"'"+b+"'")	
 							}
 						}
-					}
-					
-				}
-				
-				
-				/*------------ Комбобоксы ----------------------*/
-				
-				if ((names[t]=="personal" && l==2) || (names[t]=="greeds" && ((l==2)||(l==3) || (l==4)))
-						|| (names[t]=="postavshik" && (l==0 || l==2))
-						|| (names[t]=="salesman" && l!=2)
-						|| (names[t]=="sklad" && (l==0 || l==4) || (names[t]=="sales" && (l==3 || l==4))) 
-				){
+			}
+			}
+			
+			if (names[t]=="greeds" && (l==2 || l==3)){
 					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
 					
 					if (first==0 && p.length!=""){ //начало условия без and
@@ -1975,11 +1913,91 @@ function give_search(arr,names){
 				
 				if (first==1 && p.length!=""){
 					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
-					mystr=mystr+","+arr[t][l]
+					mystr=mystr+","+arr[t][l]	
+				}	
+			}
+			
+			if (names[t]=="personal" && l==2){
+					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
 					
-				}
+					if (first==0 && p.length!=""){ //начало условия без and
+						mystr=mystr+arr[t][l]
+						arr_u.push(arr[t][l]+"= "+"'"+p+"'")
+						first=1;
+						continue
+					}
+				
+				if (first==1 && p.length!=""){
+					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
+					mystr=mystr+","+arr[t][l]	
+				}	
 			}
+			
+			if (names[t]=="postavshik" && (l==0)){
+					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
+					
+					if (first==0 && p.length!=""){ //начало условия без and
+						mystr=mystr+arr[t][l]
+						arr_u.push(arr[t][l]+"= "+"'"+p+"'")
+						first=1;
+						continue
+					}
+				
+				if (first==1 && p.length!=""){
+					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
+					mystr=mystr+","+arr[t][l]	
+				}	
 			}
+			
+			//console.log("textfield"+l.toString()+'_'+names[t])
+			if (names[t]=="salesman" && ((l==0) || (l==2) || (l==5))){
+					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
+					
+					if (first==0 && p.length!=""){ //начало условия без and
+						mystr=mystr+arr[t][l]
+						arr_u.push(arr[t][l]+"= "+"'"+p+"'")
+						first=1;
+						continue
+					}
+				
+				if (first==1 && p.length!=""){
+					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
+					mystr=mystr+","+arr[t][l]	
+				}	
+			}
+			
+			if (names[t]=="sklad" && (l==0 || l==1 || l==4)){
+					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
+					
+					if (first==0 && p.length!=""){ //начало условия без and
+						mystr=mystr+arr[t][l]
+						arr_u.push(arr[t][l]+"= "+"'"+p+"'")
+						first=1;
+						continue
+					}
+				
+				if (first==1 && p.length!=""){
+					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
+					mystr=mystr+","+arr[t][l]	
+				}	
+			}
+			
+			if (names[t]=="sales" && (l==2 || l==3)){
+					var p=document.getElementById("textfield"+l.toString()+'_'+names[t]).value
+					
+					if (first==0 && p.length!=""){ //начало условия без and
+						mystr=mystr+arr[t][l]
+						arr_u.push(arr[t][l]+"= "+"'"+p+"'")
+						first=1;
+						continue
+					}
+				
+				if (first==1 && p.length!=""){
+					arr_u.push(" AND "+arr[t][l]+"= "+"'"+p+"'")
+					mystr=mystr+","+arr[t][l]	
+				}	
+			}
+				
 		}
 	}
     		
@@ -1990,25 +2008,20 @@ function give_search(arr,names){
 	return ans;
 	
 }
-
 function getDate() {
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; 
   var yyyy = today.getFullYear();
-
   if(dd<10) {
       dd = '0'+dd
   } 
-
   if(mm<10) {
       mm = '0'+mm
   } 
-
   today = yyyy + '-' + mm + '-' + dd;
   return today;
 }
-
 window.onload = function() {
 	var tables=['greeds','personal','postavshik','salesman','sklad','sales']
 	var st=''
@@ -2024,8 +2037,6 @@ window.onload = function() {
 	newtable('0')
 	
 };
-
-
 </script>
 </body>
 </html>

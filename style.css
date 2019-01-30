@@ -1,0 +1,143 @@
+#TID {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border:1px solid;
+  margin:5px ; 
+}
+
+#TID td, #TID th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#TID tr:nth-child(even){background-color: #f2f2f2;}
+#TID tr:hover {background-color: #ddd;}
+
+#TID th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.asel,input[type=date],.tf{
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.otdel{
+  padding: 6px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;	
+}
+
+.mysel{
+  width: 30%;
+  padding: 6px 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+
+}
+
+
+#mydiv1{
+position: fixed; /* or absolute */
+top: 25%;
+left: 90%;
+width: 200px;
+height: 370px;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;
+font-family: 'Playfair Display SC', serif;
+font-size: 20px;	
+border: 1px solid black;		
+}
+
+#mydiv2{
+position: fixed; /* or absolute */
+top: 37%;
+left: 92%;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;
+font-family: 'Playfair Display SC', serif;
+font-size: 20px;
+	
+}
+#mydiv9{
+position: fixed; /* or absolute */
+top: 39%;
+left: 100%;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;
+font-family: 'Playfair Display SC', serif;
+font-size: 20px;	
+}
+
+#mydiv5{
+position: fixed; /* or absolute */
+top: 30%;
+left: 11%;
+width: 280px;
+height: 370px;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 16px;
+background-color: #f2f2f2;	
+overflow-y: scroll;		
+}
+
+#mydiv8{
+position: fixed; /* or absolute */
+top: 15%;
+left: 10%;
+width: 300px;
+height:500px;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 18px;	
+border: 1px solid black;			
+}
+
+#mydiv3{
+position: fixed; /* or absolute */
+top: 15%;
+left: 33%;
+margin: -50px 0 0 -100px;
+background: white;
+text-align: center;	
+width: 760px;
+height:500px;
+border: 1px solid black;
+overflow-y: scroll;
+}
+#mydiv4{
+position: fixed; /* or absolute */
+top: 85%;
+left: 30%;
+background:white;	
+width: 650px;
+height:50px;
+}
